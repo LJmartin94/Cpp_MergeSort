@@ -23,9 +23,16 @@ std::vector<int> parseAndErrorCheckArgv(int argc, char **argv)
   return numbers;
 }
 
-std::vector<int> ms_split(std::vector<int> to_sort, std::vector<int>::iterator first, std::vector<int>::iterator last)
+void ms_split(std::vector<int>& to_sort, std::vector<int>::iterator first, std::vector<int>::iterator last)
 {
-	return(to_sort);
+	std::vector<int>::iterator mid = ((last - first) / 2) + first;
+	std::cout << "Mid: " << mid - first << std::endl;
+	if ((last - first) > 1)
+	{
+		ms_split(to_sort, first, mid);
+		ms_split(to_sort, mid + 1, last);
+	}
+	return;
 }
 
 int main(int argc, char **argv)
@@ -39,7 +46,7 @@ int main(int argc, char **argv)
 	std::vector<int> to_sort = parseAndErrorCheckArgv(argc, argv);
 
 	//Perform sorting
-	to_sort = ms_split(to_sort, to_sort.begin(), to_sort.end());
+	ms_split(to_sort, to_sort.begin(), to_sort.end());
 
 	//Print answer
 	for (std::vector<int>::iterator it = to_sort.begin(); it != to_sort.end(); it++)
