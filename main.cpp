@@ -23,15 +23,26 @@ std::vector<int> parseAndErrorCheckArgv(int argc, char **argv)
   return numbers;
 }
 
+std::vector<int> ms_split(std::vector<int> to_sort, std::vector<int>::iterator first, std::vector<int>::iterator last)
+{
+	return(to_sort);
+}
+
 int main(int argc, char **argv)
 {
+	// Parse input
 	if (argc < 2)
 	{
 		std::cout << "Not enough args!" << std::endl;
 		return (1);
 	}
-
 	std::vector<int> to_sort = parseAndErrorCheckArgv(argc, argv);
 
+	//Perform sorting
+	to_sort = ms_split(to_sort, to_sort.begin(), to_sort.end());
+
+	//Print answer
+	for (std::vector<int>::iterator it = to_sort.begin(); it != to_sort.end(); it++)
+		std::cout << *it << std::endl;
 	return (0);
 }
